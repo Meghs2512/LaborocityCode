@@ -14,9 +14,15 @@ export default class Skills extends React.Component {
       switchThreeValue: false,
       switchFourValue: false,
       switchFiveValue: false,
-      slider1Value: 100,
-      slider2Value: 50,
-      slider3Value: 0
+      slider1Value: 0,
+      slider2Value: 0,
+      slider3Value: 0,
+      slider1ValueText: 0,
+      slider2ValueText: 0,
+      slider3ValueText: 0,
+      constructionCheck: false,
+      restorationCheck: false,
+      demolitionCheck: false
     }
   }
   onChangeMethod = () => {
@@ -147,7 +153,7 @@ export default class Skills extends React.Component {
                     <CheckBox
                       containerStyle={{ backgroundColor: '#FFFFFF', borderColor: 'transparent' }}
                       title='Construction'
-                      checked={true}
+                      checked={this.state.constructionCheck}
                       checkedColor='#2C7DFA'
                     />
                     <Text style={styles.HiddenViewTextExp}> My Experience: </Text>
@@ -157,9 +163,9 @@ export default class Skills extends React.Component {
                       color: '#787878',
                       marginTop: 20,
                       fontSize: 11,
-                    }}>10+ Years</Text>
+                    }}>{this.state.slider1ValueText} Years</Text>
                     <Slider
-                      maximumValue={100}
+                      maximumValue={10}
                       minimumValue={0}
                       value={this.state.slider1Value}
                       step={1}
@@ -167,7 +173,12 @@ export default class Skills extends React.Component {
                         width: Dimensions.get('window').width - 50,
                         left: 20, bottom: 10
                       }}
-                      onValueChange={(slider1Value) => this.setState({ slider1Value })}
+                      onValueChange={(slider1Value) => {
+                        suffix = (slider1Value === 10) ? "+" : ""
+                        slider1ValueText = slider1Value + suffix
+                        this.setState({ slider1Value, slider1ValueText, constructionCheck: (slider1Value !== 0) })
+                      }
+                      }
                     />
                   </View>
 
@@ -175,19 +186,19 @@ export default class Skills extends React.Component {
                     <CheckBox
                       containerStyle={{ backgroundColor: '#FFFFFF', borderColor: 'transparent' }}
                       title='Restoration'
-                      checked={true}
+                      checked={this.state.restorationCheck}
                       checkedColor='#2C7DFA'
                     />
                     <Text style={styles.HiddenViewTextExp}> My Experience: </Text>
                     <Text style={{
                       position: 'absolute',
-                      right: 25,
+                      right: 18,
                       color: '#787878',
                       marginTop: 20,
                       fontSize: 11,
-                    }}>5 Years</Text>
+                    }}>{this.state.slider2ValueText} Years</Text>
                     <Slider
-                      maximumValue={100}
+                      maximumValue={10}
                       minimumValue={0}
                       value={this.state.slider2Value}
                       step={1}
@@ -195,26 +206,30 @@ export default class Skills extends React.Component {
                         width: Dimensions.get('window').width - 50,
                         left: 20, bottom: 10
                       }}
-                      onValueChange={(slider2Value) => this.setState({ slider2Value })}
+                      onValueChange={(slider2Value) => {
+                        suffix = (slider2Value === 10) ? "+" : ""
+                        slider2ValueText = slider2Value + suffix
+                        this.setState({ slider2Value, slider2ValueText, restorationCheck: (slider2Value !== 0) })
+                      }}
                     />
                   </View>
                   <View style={styles.HiddenSwitchSliderView} >
                     <CheckBox
                       containerStyle={{ backgroundColor: '#FFFFFF', borderColor: 'transparent' }}
                       title='Demolition'
-                      checked={false}
+                      checked={this.state.demolitionCheck}
                       checkedColor='#2C7DFA'
                     />
                     <Text style={styles.HiddenViewTextExp}> My Experience: </Text>
                     <Text style={{
                       position: 'absolute',
-                      right: 25,
+                      right: 18,
                       color: '#787878',
                       marginTop: 20,
                       fontSize: 11,
-                    }}>{this.state.slider3Value} Years</Text>
+                    }}>{this.state.slider3ValueText} Years</Text>
                     <Slider
-                      maximumValue={100}
+                      maximumValue={10}
                       minimumValue={0}
                       value={this.state.sliderValue}
                       step={1}
@@ -222,7 +237,11 @@ export default class Skills extends React.Component {
                         width: Dimensions.get('window').width - 50,
                         left: 20, bottom: 10
                       }}
-                      onValueChange={(slider3Value) => this.setState({ slider3Value })}
+                      onValueChange={(slider3Value) => {
+                        suffix = (slider3Value === 10) ? "+" : ""
+                        slider3ValueText = slider3Value + suffix
+                        this.setState({ slider3Value, slider3ValueText, demolitionCheck: (slider3Value !== 0) })
+                      }}
                     />
                   </View>
                 </View>

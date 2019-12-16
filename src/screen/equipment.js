@@ -7,11 +7,11 @@ export default class Equipment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      switchEquipOneValue: true,
-      switchEquipTwoValue: true,
+      switchEquipOneValue: false,
+      switchEquipTwoValue: false,
       switchEquipThreeValue: false,
       switchEquipFourValue: false,
-      switchEquipFiveValue: true,
+      switchEquipFiveValue: false,
     }
   }
   render() {
